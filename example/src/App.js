@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { ExampleComponent } from 'tracqr-forms'
+import { Demo } from 'tracqr-forms'
 import 'tracqr-forms/dist/index.css'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return <Demo />
 }
 
 export default App
