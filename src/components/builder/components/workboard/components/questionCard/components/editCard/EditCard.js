@@ -1,4 +1,4 @@
-import { useCallback, useMemo, memo } from "react";
+import React, { useCallback, useMemo, memo } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -45,7 +45,7 @@ function EditCard(props) {
   );
 
   return (
-    <>
+    <React.Fragment>
       <Grid item xs={matches ? 12 : 8} className={classes.gridItem}>
         <TextField
           required
@@ -107,7 +107,7 @@ function EditCard(props) {
         inputs={props.inputs}
         onChange={props.onChange}
       />
-    </>
+    </React.Fragment>
   );
 }
 

@@ -68,7 +68,7 @@ export default function SidebarRight() {
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   <Draggable key={key} draggableId={key} index={index}>
                     {(provided, snapshot) => (
-                      <>
+                      <React.Fragment>
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}
@@ -95,7 +95,7 @@ export default function SidebarRight() {
                             color={typeList[key].color}
                           />
                         )}
-                      </>
+                      </React.Fragment>
                     )}
                   </Draggable>
 

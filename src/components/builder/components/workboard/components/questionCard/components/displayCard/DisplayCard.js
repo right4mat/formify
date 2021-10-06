@@ -1,4 +1,4 @@
-import { useState, memo } from "react";
+import React, { useState, memo } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     display: "flex",
     justifyContent: "flex-start",
-    alignItems: "flex-end",
+    alignItems: "flex-start",
     flexDirection: "column",
     padding: theme.spacing(2),
     minHeight: "100%",
@@ -58,7 +58,7 @@ function DisplayCards(props) {
   );
 
   return (
-    <>
+    <React.Fragment>
       <Grid
         item
         xs={11}
@@ -92,7 +92,7 @@ function DisplayCards(props) {
           )}
         </Box>
       </Grid>
-    </>
+    </React.Fragment>
   );
 }
 

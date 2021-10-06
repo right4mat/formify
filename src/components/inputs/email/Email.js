@@ -1,5 +1,5 @@
 import EmailInput from "../../shared/customInputs/EmailInput";
-import { useState, memo, useCallback } from "react";
+import React, { useState, memo, useCallback } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";

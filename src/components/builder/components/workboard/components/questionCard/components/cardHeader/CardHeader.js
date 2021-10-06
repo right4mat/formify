@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
@@ -53,7 +53,7 @@ export default function CardHeader(props) {
   };
 
   return (
-    <>
+    <React.Fragment>
       <Grid item xs={matches ? 12 : 6} className={classes.gridItem}>
         <IconButton
           onClick={() => onPress("edit")}
@@ -111,7 +111,7 @@ export default function CardHeader(props) {
                   icon={<VpnKeyOutlinedIcon fontSize="small" />}
                   heading={"Felid key"}
                   body={
-                    "This is the administrative key for this this field. Formify exposes these keys to aid in the building of reports which could reference submission data across multiple forms. Keys should be unique within a single form. Changing a key will not update previous submissions with the new key."
+                    "This is the administrative key for this this field. These keys to aid in the building of reports which could reference submission data across multiple forms. Keys should be unique within a single form. Changing a key will not update previous submissions with the new key."
                   }
                 />
               </InputAdornment>
@@ -120,6 +120,6 @@ export default function CardHeader(props) {
           />
         </FormControl>
       </Grid>
-    </>
+    </React.Fragment>
   );
 }

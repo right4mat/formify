@@ -1,4 +1,4 @@
-import { memo } from "react";
+import React, { memo } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import SidebarRight from "./sidebarRight/SidebarRight";
 

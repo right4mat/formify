@@ -1,3 +1,4 @@
+import React from 'react';
 import Switch from "@material-ui/core/Switch";
 import Box from "@material-ui/core/Box";
 import FormLabel from "@material-ui/core/FormLabel";

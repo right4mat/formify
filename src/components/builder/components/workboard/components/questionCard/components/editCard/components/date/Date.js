@@ -38,7 +38,7 @@ export default function Number(props) {
   const classes = useStyles();
 
   return (
-    <>
+    <React.Fragment>
       <Grid item xs={12} className={classes.gridItemFlexEnd}>
         <hr className={classes.break} />
       </Grid>
@@ -61,6 +61,6 @@ export default function Number(props) {
           value={props.data[0].value}
         />
       </Grid>
-    </>
+    </React.Fragment>
   );
 }

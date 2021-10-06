@@ -1,3 +1,4 @@
+import React from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 function RadioButton(props) {
   const classes = useStyles();
   return (
-    <>
+    <React.Fragment>
       <Grid item xs={1} className={classes.gridItem}>
         <IconButton>
           <DragIndicatorOutlinedIcon fontSize="small" />
@@ -85,7 +86,7 @@ function RadioButton(props) {
           <RemoveCircleOutlineIcon />
         </IconButton>
       </Grid>
-    </>
+    </React.Fragment>
   );
 }
 

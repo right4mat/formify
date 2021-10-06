@@ -1,5 +1,5 @@
 import Popover from "./Popover";
-import { useState } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 
@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({}));
 export default function PopoverCustom(props) {
   const [showPop, setShowPop] = useState(null);
   return (
-    <>
+    <React.Fragment>
       <IconButton
         className={props.className}
         size={props.size}
@@ -35,6 +35,6 @@ export default function PopoverCustom(props) {
         heading={props.heading}
         body={props.body}
       />
-    </>
+    </React.Fragment>
   );
 }

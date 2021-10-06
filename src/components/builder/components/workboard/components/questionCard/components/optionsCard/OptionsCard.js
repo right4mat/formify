@@ -1,4 +1,4 @@
-import { useState, memo } from "react";
+import React, { useState, memo } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -29,7 +29,7 @@ function OptionsCard(props) {
   console.log("OptionsCard re-render " + props.index);
 
   return (
-    <>
+    <React.Fragment>
       <Grid item xs={12} className={classes.gridItem}>
         <Checkbox
           color="default"
@@ -115,7 +115,7 @@ function OptionsCard(props) {
           />
         </Grid>
       )}
-    </>
+    </React.Fragment>
   );
 }
 

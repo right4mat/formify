@@ -37,7 +37,7 @@ export default function Number(props) {
   const classes = useStyles();
 
   return (
-    <>
+    <React.Fragment>
       <Grid item xs={12} className={classes.gridItemFlexEnd}>
         <hr className={classes.break} />
         <IconButton component="label">
@@ -73,6 +73,6 @@ export default function Number(props) {
           }}
         />
       </Grid>
-    </>
+    </React.Fragment>
   );
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import SwitchInput from "../../../../../../../../../shared/customInputs/SwitchInput";
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Switch(props) {
   const classes = useStyles();
   return (
-    <>
+    <React.Fragment>
       <Grid item xs={12} className={classes.gridItemFlexEnd}>
         <hr className={classes.break} />
       </Grid>
@@ -52,6 +52,6 @@ export default function Switch(props) {
           }
         />
       </Grid>
-    </>
+    </React.Fragment>
   );
 }

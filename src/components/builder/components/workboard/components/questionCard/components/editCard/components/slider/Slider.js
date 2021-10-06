@@ -27,7 +27,7 @@ export default function SliderInput(props) {
   const classes = useStyles();
 
   return (
-    <>
+    <React.Fragment>
       <Grid item xs={12} className={classes.gridItemFlexEnd}>
         <hr className={classes.break} />
       </Grid>
@@ -42,6 +42,6 @@ export default function SliderInput(props) {
         />
       </Grid>
       <Grid xs={4}></Grid>
-    </>
+    </React.Fragment>
   );
 }

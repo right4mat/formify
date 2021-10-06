@@ -34,7 +34,7 @@ export default function Email(props) {
   const [valid, setVaild] = React.useState(true);
 
   return (
-    <>
+    <React.Fragment>
       <Grid item xs={12} className={classes.gridItemFlexEnd}>
         <hr className={classes.break} />
       </Grid>
@@ -55,6 +55,6 @@ export default function Email(props) {
           value={props.data[0].value}
         />
       </Grid>
-    </>
+    </React.Fragment>
   );
 }
