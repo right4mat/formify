@@ -37,13 +37,14 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     width: "100%",
     overflow: "hidden",
-    padding: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
   break: {
     borderTop: "1px solid #d3d3d3",
     width: "100%",
     height: 0,
-    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(1),
   },
   input: {
     backgroundColor: "#fff",

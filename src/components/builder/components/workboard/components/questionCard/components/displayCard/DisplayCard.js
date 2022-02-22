@@ -13,11 +13,21 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     display: "flex",
     justifyContent: "flex-start",
-    alignItems: "flex-start",
+    alignItems: "flex-end",
     flexDirection: "column",
     padding: theme.spacing(2),
     minHeight: "100%",
     height: "100%",
+  },
+
+  edit:{
+    minHeight: "100%",
+    height: "100%",
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "flex-end",
+    flexDirection: "column",
+
   },
 
   hidden: {
@@ -84,7 +94,7 @@ function DisplayCards(props) {
         xs={1}
         className={classes.gridItem + " " + (props.hidden && classes.hidden)}
       >
-        <Box minHeight={"100%"} className={classes.gridItem}>
+        <Box minHeight={"100%"} className={classes.edit}>
           {props.showEditIcon && (
             <IconButton aria-label="edit">
               <EditIcon fontSize="small" />

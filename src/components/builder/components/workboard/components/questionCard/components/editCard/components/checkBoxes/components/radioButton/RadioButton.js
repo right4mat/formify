@@ -33,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     backgroundColor: "#fff",
+    marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(1),
   },
 }));
 

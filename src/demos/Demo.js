@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useState, useRef } from 'react'
+import moment from 'moment'
 import { makeStyles } from '@material-ui/core/styles'
 import Main from '../components/builder/Main'
 import Paper from '@material-ui/core/Paper'
@@ -6,6 +7,7 @@ import Box from '@material-ui/core/Box'
 import Viewer from '../components/viewer/Viewer'
 import SidebarDemo from './components/sidebarDemo/SidebarDemo'
 import EditStyle from './components/editStyle/EditStyle'
+import SavedForms from './components/savedForms/SavedForms'
 import { dummy, form } from '../components/builder/models/formModel'
 import {
   createTheme,
@@ -15,18 +17,18 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   demo: {
-    width: '100vw',
-    height: '100vh',
+    maxHeight: '100vh',
+    maxWidth: '100vw',
+    overflow: 'hidden',
     display: 'flex',
     justifyContent: 'space-between'
   },
   builder: {
-    maxHeight: '95vh',
     margin: '2.5%',
-    width:"100%"
+    maxWidth: 1000
   },
   sidebar: {
-    maxHeight: '100vh'
+    minHeight: '100%'
   },
   viewer: {
     boxSizing: 'border-boxing',
@@ -35,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     display: 'flex',
     justifyContent: 'center'
-    
   },
   viewerInner: {
     flex: 1,
@@ -136,48 +137,64 @@ export default function App() {
   const [formWorkboard, setFormWorkboard] = useState(
     JSON.parse(JSON.stringify(dummy))
   )
-  const [formViewer, setFormViewer] = useState(
-    JSON.parse(JSON.stringify(dummy))
-  )
+  // const [formViewer, setFormViewer] = useState(
+  //   JSON.parse(JSON.stringify(dummy))
+  // )
   const [mode, setMode] = useState('build')
   const [openStyles, setOpenStyles] = useState(false)
+  const [openSavedForms, setOpenSavedForms] = useState(false)
   const [theme, setTheme] = useState(themeDemo)
+  const [storage, setStorage] = useState({})
 
   return (
     <ThemeProvider>
       <div className={classes.demo}>
         {mode === 'build' && (
-          <Paper className={classes.builder} elevation={3}>
-            <Main
-              theme={theme}
-              toolBarPosition='left'
-              form={formWorkboard}
-              onChange={(e) => setFormWorkboard({ ...e })}
-              toolbarSpace={300} //pixels
-            />
-          </Paper>
+          <Box className={classes.viewer} width={'100%'}>
+            <Paper className={classes.builder} elevation={3}>
+              <Main
+                theme={theme}
+                toolBarPosition='left'
+                form={formWorkboard}
+                onChange={(e) => {
+                  setFormWorkboard({ ...e })
+                }}
+                toolbarSpace={300} //pixels
+              />
+            </Paper>
+          </Box>
         )}
         {mode === 'view' && (
           <Box className={classes.viewer} width={'100%'}>
             <Paper elevation={3} className={classes.viewerInner}>
               <Viewer
                 theme={theme}
-                form={formViewer}
+                form={formWorkboard}
                 onSubmit={(form) => {
                   console.log(form)
-                  setFormViewer(JSON.parse(JSON.stringify(formWorkboard)))
+                  setStorage((old) => {
+                    old[Math.random().toString(16).slice(2)] = {
+                      form: JSON.parse(JSON.stringify(form)),
+                      date: moment().format('DD / MM / YYYY hh:mm:ss')
+                    }
+                    return {...old}
+                  })
                 }}
-                onChange={setFormViewer}
+                onChange={(form) => {
+                  console.log(form)
+                  setFormWorkboard(form)
+                }}
               />
             </Paper>
           </Box>
         )}
         <Paper elevation={3} className={classes.sidebar}>
           <SidebarDemo
-
             mode={mode}
             setMode={setMode}
             setStyles={setOpenStyles}
+            setOpenSavedForms={setOpenSavedForms}
+            storage={storage}
           />
         </Paper>
         <EditStyle
@@ -185,6 +202,13 @@ export default function App() {
           setTheme={setTheme}
           open={openStyles}
           setOpen={setOpenStyles}
+        />
+        <SavedForms
+          forms={storage}
+          setForms={setStorage}
+          open={openSavedForms}
+          setOpen={setOpenSavedForms}
+          switchForm={setFormWorkboard}
         />
       </div>
     </ThemeProvider>
