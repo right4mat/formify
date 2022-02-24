@@ -43,7 +43,7 @@ export default function SidebarDemo(props) {
           </Tooltip>
         </Grid>
         <Grid item>
-          <Tooltip title='Your saved questions' placement='right-start'>
+          <Tooltip title='Your submissions' placement='right-start'>
             <IconButton size='medium' className={classes.item}    onClick={() => props.setOpenSavedForms(true)}>
               <Badge badgeContent={Object.keys(props.storage).length} color='secondary' >
                 <FolderSpecialIcon />
@@ -57,7 +57,7 @@ export default function SidebarDemo(props) {
               size='medium'
               className={classes.item}
               onClick={() => props.setStyles(true)}
-              //disabled={props.mode !== "view"}
+              disabled={true}
             >
               <StyleIcon />
             </IconButton>

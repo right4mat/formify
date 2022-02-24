@@ -137,9 +137,9 @@ export default function App() {
   const [formWorkboard, setFormWorkboard] = useState(
     JSON.parse(JSON.stringify(dummy))
   )
-  // const [formViewer, setFormViewer] = useState(
-  //   JSON.parse(JSON.stringify(dummy))
-  // )
+  const [formViewer, setFormViewer] = useState(
+    JSON.parse(JSON.stringify(dummy))
+  )
   const [mode, setMode] = useState('build')
   const [openStyles, setOpenStyles] = useState(false)
   const [openSavedForms, setOpenSavedForms] = useState(false)
@@ -158,6 +158,7 @@ export default function App() {
                 form={formWorkboard}
                 onChange={(e) => {
                   setFormWorkboard({ ...e })
+                  setFormViewer(JSON.parse(JSON.stringify(e)))
                 }}
                 toolbarSpace={300} //pixels
               />
@@ -169,20 +170,22 @@ export default function App() {
             <Paper elevation={3} className={classes.viewerInner}>
               <Viewer
                 theme={theme}
-                form={formWorkboard}
+                form={formViewer}
                 onSubmit={(form) => {
                   console.log(form)
                   setStorage((old) => {
                     old[Math.random().toString(16).slice(2)] = {
-                      form: JSON.parse(JSON.stringify(form)),
+                      form: JSON.parse(JSON.stringify(formWorkboard)),
+                      submission: JSON.parse(JSON.stringify(form)),
                       date: moment().format('DD / MM / YYYY hh:mm:ss')
                     }
-                    return {...old}
+                    return { ...old }
                   })
+                  setFormViewer(JSON.parse(JSON.stringify(formWorkboard)))
                 }}
                 onChange={(form) => {
                   console.log(form)
-                  setFormWorkboard(form)
+                  setFormViewer(form)
                 }}
               />
             </Paper>
@@ -208,7 +211,10 @@ export default function App() {
           setForms={setStorage}
           open={openSavedForms}
           setOpen={setOpenSavedForms}
-          switchForm={setFormWorkboard}
+          switchForm={(form, submission) => {
+            setFormWorkboard(JSON.parse(JSON.stringify(form)))
+            setFormViewer(JSON.parse(JSON.stringify(submission)))
+          }}
         />
       </div>
     </ThemeProvider>

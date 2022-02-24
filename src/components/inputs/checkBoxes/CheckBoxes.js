@@ -28,7 +28,7 @@ function Checkboxes(props) {
   const classes = useStyles();
   return (
     <FormControl
-      style={props.hidden && {display:'none'} }
+      
       component="fieldset"
       required={props.required}
       hidden={props.hidden}

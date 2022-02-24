@@ -92,7 +92,7 @@ export default function SavedForms(props) {
             dense
             button
             onClick={() => {
-              props.switchForm({ ...props.forms[k].form })
+              props.switchForm(props.forms[k].form, props.forms[k].submission)
               handleClose()
             }}
           >

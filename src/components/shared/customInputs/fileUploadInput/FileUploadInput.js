@@ -36,7 +36,7 @@ export default function NumberInput(props) {
         <input type="file" hidden onChange={(e) => props.onChange(e)} />
       </Button>
       <TextField
-        disabled={props.disabled}
+        disabled={true}
         size="small"
         error={error}
         onChange={props.onChange}

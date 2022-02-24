@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     borderTop: "1px solid #d3d3d3",
     width: "100%",
     height: 0,
-    marginRight: theme.spacing(2),
+    //marginRight: theme.spacing(2),
   },
 
   input: {
@@ -43,12 +43,12 @@ export default function StarRating(props) {
     <React.Fragment>
       <Grid item xs={12} className={classes.gridItemFlexEnd}>
         <hr className={classes.break} />{" "}
-        <IconButton>
+        {/* <IconButton>
           <RemoveCircleOutlineIcon />
         </IconButton>
         <IconButton>
           <AddCircleOutlineOutlinedIcon />
-        </IconButton>
+        </IconButton> */}
       </Grid>
       <Grid item xs={12} className={classes.gridItem}>
         <StartRatingInput

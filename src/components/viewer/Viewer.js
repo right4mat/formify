@@ -59,7 +59,7 @@ export default function Viewer(props) {
         </Box>
         <form className={classes.form} noValidate>
           {props.form &&
-            props.form.items.map((item, index) => (
+            props.form.items.filter(item => !item.hidden).map((item, index) => (
               <Box marginBottom={5}>
                 <InputToRender
                   index={index}
