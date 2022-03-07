@@ -111,7 +111,7 @@ export default function CardHeader(props) {
                   icon={<VpnKeyOutlinedIcon fontSize="small" />}
                   heading={"Felid key"}
                   body={
-                    "This is the administrative key for this this field. These keys to aid in the building of reports which could reference submission data across multiple forms. Keys should be unique within a single form. Changing a key will not update previous submissions with the new key."
+                    "This keys can be used to aid in the building of reports which could reference submission data across multiple forms. Keys should be unique within a single form. Changing a key will not update previous submissions with the new key."
                   }
                 />
               </InputAdornment>

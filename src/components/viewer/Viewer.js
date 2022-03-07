@@ -8,14 +8,13 @@ import { form as formTemplate } from '../builder/models/formModel'
 import { Inputs } from './models/inputs'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-
-
+import { validateForm  } from './functions/validation'
 
 const useStyles = makeStyles((theme) => ({
   form: {
     minHeight: '100%',
     minWidth: '100%',
-    paddingBottom:theme.spacing(4)
+    paddingBottom: theme.spacing(4)
   }
 }))
 
@@ -57,28 +56,39 @@ export default function Viewer(props) {
         <Box marginBottom={5}>
           <Typography variant='h3'>{props.form && props.form.title}</Typography>
         </Box>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate={false}>
           {props.form &&
-            props.form.items.filter(item => !item.hidden).map((item, index) => (
-              <Box marginBottom={5}>
-                <InputToRender
-                  index={index}
-                  question={item.question || 'Your question...'}
-                  placeholder={item.placeholder}
-                  required={item.required}
-                  hidden={item.hidden}
-                  disabled={item.disabled}
-                  id={item.id}
-                  detail={item.detail || 'Extra details...'}
-                  type={item.type}
-                  inputs={item.inputs}
-                  onChange={onItemChangeCB}
-                  fullWidth={true}
-                />
-              </Box>
-            ))}
+            props.form.items
+              .filter((item) => !item.hidden)
+              .map((item, index) => (
+                <Box marginBottom={5}>
+                  <InputToRender
+                    index={index}
+                    question={item.question || ''}
+                    placeholder={item.placeholder}
+                    required={item.required}
+                    hidden={item.hidden}
+                    s
+                    disabled={item.disabled}
+                    id={item.id}
+                    detail={item.detail}
+                    type={item.type}
+                    inputs={item.inputs}
+                    onChange={onItemChangeCB}
+                    fullWidth={true}
+                  />
+                </Box>
+              ))}
           <Box marginBottom={5} marginTop={10}>
-            <Button variant='contained' onClick={() => props.onSubmit(props.form)}>
+            <Button
+              variant='contained'
+              onClick={() => {
+                if(validateForm(props.form))
+                  props.onSubmit(props.form)
+                
+
+              }}
+            >
               Submit
             </Button>
           </Box>

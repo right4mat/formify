@@ -60,7 +60,7 @@ export default function Number(props) {
           disabledName={!props.data[0].value}
           placeholder={"File name..."}
           className={classes.input}
-          file={props.data[0].value}
+          file={props.data[0].value || {}}
           onChange={(e) => {
             props.data[0].value.name = e.target.value;
             props.onChange(props.index, "inputs", [...props.data]);

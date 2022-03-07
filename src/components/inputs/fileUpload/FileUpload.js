@@ -43,16 +43,17 @@ function Email(props) {
         <FileUploadInput
           disabled={props.disabled}
           placeholder={'File name...'}
-          file={props.inputs[0].value}
+          file={props.inputs[0].value || {}}
           fullWidth
           InputLabelProps={{
             shrink: true
           }}
           onChange={
             props.onChange
-              ? async (e) => {
+              ? (e) => {
+                props.inputs[0].value = e
                   props.onChange(props.index, 'inputs', [
-                    ...(await upload(props.inputs, 0, e.target.files[0]))
+                    ...props.inputs
                   ])
                 }
               : false

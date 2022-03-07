@@ -48,14 +48,15 @@ export default function Number(props) {
           label="File"
           variant="outlined"
           fullWidth
-          file={props.data[0].value}
+          file={props.data[0].value || {}}
           InputLabelProps={{
             shrink: true,
           }}
-          onChange={async (e) =>
+          onChange={ (e) =>{
+            props.data[0].value = e
             props.onChange(props.index, "inputs", [
-              ...(await upload(props.data, 0, e.target.files[0])),
-            ])}
+              ...props.data
+            ])}}
         />
       </Grid>
     </React.Fragment>

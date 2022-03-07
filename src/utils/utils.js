@@ -30,13 +30,14 @@ export function setValue(arr, index, value) {
   return arr;
 }
 
-export async function upload(data, index, file) {
+export async function upload(file) {
   try {
-    data[index].value = {
+    const data= {
       file: await toBase64(file),
       name: file.name.split(".")[0],
       type: file.name.split(".").pop(),
     };
+    console.log(data)
     return data;
   } catch (e) {
     console.error(e);
