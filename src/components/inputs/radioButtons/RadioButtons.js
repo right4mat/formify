@@ -28,6 +28,7 @@ function RadioButtons(props) {
   const classes = useStyles();
   return (
     <FormControl
+    error={props.error}
       component="fieldset"
       required={props.required}
       hidden={props.hidden}

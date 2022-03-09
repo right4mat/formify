@@ -13,7 +13,7 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import { InputsEdit } from './models/inputs'
 import Type from '../../../../../../shared/types/Type'
-import types from '../../../../../../shared/types/models/types'
+import types from '../../../../../../../shared/models/types'
 import json2mq from 'json2mq'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 

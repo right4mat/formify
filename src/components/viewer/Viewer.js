@@ -1,4 +1,4 @@
-import React, { useState, memo, useCallback } from 'react'
+import React, { useState, memo, useCallback, useRef, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
@@ -8,7 +8,7 @@ import { form as formTemplate } from '../builder/models/formModel'
 import { Inputs } from './models/inputs'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import { validateForm  } from './functions/validation'
+import { validateForm } from './functions/validator'
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -36,6 +36,7 @@ const InputToRender = memo((props) => {
         inputs={props.inputs}
         onChange={props.onChange}
         fullWidth={props.fullWidth}
+        error={props.error}
       />
     )
   }
@@ -44,21 +45,30 @@ const InputToRender = memo((props) => {
 export default function Viewer(props) {
   const classes = useStyles()
   const theme = createTheme(props.theme)
+  const [form, setForm] = useState(props.form)
+  const formOrignal = useRef(JSON.parse(JSON.stringify(props.form)))
 
   const onItemChangeCB = useCallback(
-    (index, key, value) =>
-      onItemChange(index, key, value, props.onChange, false),
-    [props.onChange]
+    (index, key, value) => {
+      onItemChange(index, key, value, setForm, false)
+      props.onChange(form)
+    },
+    [setForm]
   )
+
+  useEffect(() => {
+    setForm(props.form)
+  }, [props.form])
+
   return (
     <ThemeProvider theme={theme}>
-      <Box width={'100%'} height={'100%'}>
+      <Box width={'100%'} height={'100%'} style={{ position: 'relative' }}>
         <Box marginBottom={5}>
-          <Typography variant='h3'>{props.form && props.form.title}</Typography>
+          <Typography variant='h3'>{form && form.title}</Typography>
         </Box>
         <form className={classes.form} noValidate={false}>
-          {props.form &&
-            props.form.items
+          {form &&
+            form.items
               .filter((item) => !item.hidden)
               .map((item, index) => (
                 <Box marginBottom={5}>
@@ -68,7 +78,7 @@ export default function Viewer(props) {
                     placeholder={item.placeholder}
                     required={item.required}
                     hidden={item.hidden}
-                    s
+                    error={item.error}
                     disabled={item.disabled}
                     id={item.id}
                     detail={item.detail}
@@ -83,10 +93,9 @@ export default function Viewer(props) {
             <Button
               variant='contained'
               onClick={() => {
-                if(validateForm(props.form))
-                  props.onSubmit(props.form)
-                
-
+                if (validateForm(form)) {
+                  props.onSubmit(form)
+                } else setForm((old) => ({ ...old }))
               }}
             >
               Submit

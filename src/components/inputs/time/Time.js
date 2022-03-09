@@ -28,6 +28,7 @@ function Time(props) {
     <ClickAwayListener onClickAway={() => setFocused(false)}>
       <Box display={props.hidden ? "none" : ""}>
         <FormControl
+         error={props.error}
           required={props.required}
           hidden={props.hidden}
           fullWidth={props.fullWidth}

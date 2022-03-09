@@ -26,6 +26,7 @@ function Email(props) {
   return (
     <ClickAwayListener onClickAway={() => setFocused(false)}>
       <FormControl
+       error={props.error}
         required={props.required}
         hidden={props.hidden}
         fullWidth={props.fullWidth}

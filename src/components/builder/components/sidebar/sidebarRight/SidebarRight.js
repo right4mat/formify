@@ -4,7 +4,7 @@ import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { uuidv4 } from "../../../../../utils/helpers";
-import types from "../../../shared/types/models/types";
+import types from "../../../../shared/models/types";
 import TypeListItem from "./components/TypeListItem";
 import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";

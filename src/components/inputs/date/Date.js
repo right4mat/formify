@@ -1,39 +1,40 @@
-import TextField from "@material-ui/core/TextField";
-import React, { useState, memo, useCallback } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import { setValue } from "../../../utils/utils";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import TextField from '@material-ui/core/TextField'
+import React, { useState, memo, useCallback } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import FormLabel from '@material-ui/core/FormLabel'
+import FormControl from '@material-ui/core/FormControl'
+import FormHelperText from '@material-ui/core/FormHelperText'
+import { setValue } from '../../../utils/utils'
+import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
 const useStyles = makeStyles((theme) => ({
   FormLabel: {
-    fontSize: "large",
-    textAlign: "left",
+    fontSize: 'large',
+    textAlign: 'left'
   },
   FormLabelHelp: {
-    marginBottom: theme.spacing(1),
+    marginBottom: theme.spacing(1)
   },
   FormControlLabel: {
-    paddingLeft: 10,
-  },
-}));
+    paddingLeft: 10
+  }
+}))
 
 function Date(props) {
-  const classes = useStyles();
-  const [focused, setFocused] = useState(false);
+  const classes = useStyles()
+  const [focused, setFocused] = useState(false)
   return (
     <ClickAwayListener onClickAway={() => setFocused(false)}>
       <FormControl
-        component="fieldset"
+        error={props.error}
+        component='fieldset'
         required={props.required}
         hidden={props.hidden}
         fullWidth={props.fullWidth}
         disabled={props.disabled}
         focused={focused}
       >
-        <FormLabel className={classes.FormLabel} component="label">
+        <FormLabel className={classes.FormLabel} component='label'>
           {props.question}
         </FormLabel>
         <FormHelperText className={classes.FormLabelHelp}>
@@ -41,20 +42,20 @@ function Date(props) {
         </FormHelperText>
 
         <TextField
-          type="date"
-          variant="outlined"
+          type='date'
+          variant='outlined'
           InputLabelProps={props.InputLabelProps}
           onChange={(e) => {
-            typeof props.onChange === "function" &&
-              props.onChange(props.index, "inputs", [
-                ...setValue(props.inputs, 0, e.target.value),
-              ]);
+            typeof props.onChange === 'function' &&
+              props.onChange(props.index, 'inputs', [
+                ...setValue(props.inputs, 0, e.target.value)
+              ])
           }}
           value={props.inputs[0].value}
         />
       </FormControl>
     </ClickAwayListener>
-  );
+  )
 }
 
-export default Date;
+export default Date

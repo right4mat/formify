@@ -14,6 +14,8 @@ import {
   ThemeProvider,
   createStyles
 } from '@material-ui/core/styles'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import Backdrop from '@material-ui/core/Backdrop'
 
 const useStyles = makeStyles((theme) => ({
   demo: {
@@ -46,6 +48,19 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(10),
 
     overflowY: 'auto'
+  },
+  busy: {
+    position: 'absolute',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: 999,
+    background: 'rgba(255,255,255,0.5)'
   }
 }))
 
@@ -145,6 +160,7 @@ export default function App() {
   const [openSavedForms, setOpenSavedForms] = useState(false)
   const [theme, setTheme] = useState(themeDemo)
   const [storage, setStorage] = useState({})
+  const [busy, setBusy] = useState(false)
 
   return (
     <ThemeProvider>
@@ -167,25 +183,33 @@ export default function App() {
         )}
         {mode === 'view' && (
           <Box className={classes.viewer} width={'100%'}>
+            {busy && (
+              <div className={classes.busy}>
+                <CircularProgress color='primary' />
+              </div>
+            )}
+
             <Paper elevation={3} className={classes.viewerInner}>
               <Viewer
                 theme={theme}
                 form={formViewer}
                 onSubmit={(form) => {
-                  console.log(form)
-                  setStorage((old) => {
-                    old[Math.random().toString(16).slice(2)] = {
-                      form: JSON.parse(JSON.stringify(formWorkboard)),
-                      submission: JSON.parse(JSON.stringify(form)),
-                      date: moment().format('DD / MM / YYYY hh:mm:ss')
-                    }
-                    return { ...old }
-                  })
-                  setFormViewer(JSON.parse(JSON.stringify(formWorkboard)))
+                  setBusy(true)
+                  setTimeout(() => {
+                    setStorage((old) => {
+                      old[Math.random().toString(16).slice(2)] = {
+                        form: JSON.parse(JSON.stringify(formWorkboard)),
+                        submission: JSON.parse(JSON.stringify(form)),
+                        date: moment().format('DD / MM / YYYY hh:mm:ss')
+                      }
+                      return { ...old }
+                    })
+                    setFormViewer(JSON.parse(JSON.stringify(formWorkboard)))
+                    setBusy(false)
+                  }, 500)
                 }}
                 onChange={(form) => {
                   console.log(form)
-                  setFormViewer(form)
                 }}
               />
             </Paper>
