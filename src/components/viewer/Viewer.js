@@ -9,13 +9,18 @@ import { Inputs } from './models/inputs'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import { validateForm } from './functions/validator'
+import Popover from '@material-ui/core/Popover'
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
   form: {
     minHeight: '100%',
     minWidth: '100%',
     paddingBottom: theme.spacing(4)
-  }
+  },
+  popover: {
+    padding: theme.spacing(2),
+  },
 }))
 
 const InputToRender = memo((props) => {
@@ -43,9 +48,11 @@ const InputToRender = memo((props) => {
 })
 
 export default function Viewer(props) {
+  const submitRef = useRef()
   const classes = useStyles()
   const theme = createTheme(props.theme)
   const [form, setForm] = useState(props.form)
+  const [anchorEl, setAnchorEl] = useState(null)
   const formOrignal = useRef(JSON.parse(JSON.stringify(props.form)))
 
   const onItemChangeCB = useCallback(
@@ -55,6 +62,8 @@ export default function Viewer(props) {
     },
     [setForm]
   )
+
+  const onValidate = () => {}
 
   useEffect(() => {
     setForm(props.form)
@@ -91,15 +100,35 @@ export default function Viewer(props) {
               ))}
           <Box marginBottom={5} marginTop={10}>
             <Button
+              ref={submitRef}
               variant='contained'
               onClick={() => {
                 if (validateForm(form)) {
                   props.onSubmit(form)
-                } else setForm((old) => ({ ...old }))
+                } else {
+                  setAnchorEl(submitRef.current)
+                  setForm((old) => ({ ...old }))
+                }
               }}
             >
               Submit
             </Button>
+            
+            <Popover
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'left'
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left'
+              }}
+            >
+             
+             <Alert severity="error">Please complete all required questions</Alert>
+            </Popover> 
           </Box>
         </form>
       </Box>

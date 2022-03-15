@@ -21,7 +21,8 @@ import {
   valEmail,
   valPhone,
   valNumber,
-  valSwitch
+  valSwitch,
+  valStar
 } from '../functions/validation'
 
 const data = {
@@ -37,7 +38,7 @@ const data = {
     icon: CheckBoxOutlinedIcon,
     iconColor: '#2857da',
     color: '#dbeafe',
-    validator: valSelection
+    validator: valSelection 
   },
   SHT: {
     text: 'Short Text',
@@ -65,7 +66,6 @@ const data = {
     icon: LinkIcon,
     iconColor: '#4338ca',
     color: '#e0e7ff',
-    validator: valText
   },
   YEN: {
     text: 'Switch',
@@ -79,7 +79,7 @@ const data = {
     icon: StarBorderIcon,
     iconColor: '#b45309',
     color: '#fef3c7',
-    validator: valText
+    validator: valStar
   },
   PHN: {
     text: 'Phone Number',
@@ -121,7 +121,7 @@ const data = {
     icon: TuneOutlinedIcon,
     iconColor: '#047857',
     color: '#d1fae5',
-    validator: valText
+    validator: valNumber
   },
   FIU: {
     text: 'File Upload',

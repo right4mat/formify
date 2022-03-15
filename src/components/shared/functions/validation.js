@@ -19,6 +19,10 @@ export function valSwitch(f) {
   return true
 }
 
+export function valLink(f) {
+  return true
+}
+
 export function valEmail(f) {
   return validateEmail(f.inputs[0].value)
 }
@@ -32,4 +36,9 @@ export function valPhone(f) {
 
 export function valNumber(f) {
   return isNumeric(f.inputs[0].value)
+}
+
+export function valStar(f){
+  if (f.inputs[0].value) return true
+  return false
 }

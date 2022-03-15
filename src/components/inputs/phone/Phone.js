@@ -48,7 +48,7 @@ function Phone(props) {
           className={classes.input}
           InputLabelProps={props.InputLabelProps}
           variant="outlined"
-          value={props.inputs[0]}
+          value={props.inputs[0].value}
           onChange={(x) =>
             typeof props.onChange === "function" &&
             props.onChange(props.index, "inputs", [

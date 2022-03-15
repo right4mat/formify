@@ -41,7 +41,7 @@ export default function Phone(props) {
               shrink: true,
             }}
           variant="outlined"
-          value={props.data[0]}
+          value={props.data[0].value}
           onChange={(x) =>
             props.onChange(props.index, "inputs", [
               ...setValue(props.data, 0, x),

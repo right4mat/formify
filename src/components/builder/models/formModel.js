@@ -94,7 +94,7 @@ export const dummy = {
       inputs: [
         {
           id: "32fb711c-7f72-4c58-aecf-0333b89ba0a3",
-          value: "",
+          value: 0,
           selected: false,
         },
       ],
