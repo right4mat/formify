@@ -54,7 +54,7 @@ function DropDown(props) {
           variant='outlined'
         >
           {props.inputs.map((x) => (
-            <MenuItem value={x.id}>{x.value}</MenuItem>
+            <MenuItem key={x.id} value={x.id}>{x.value}</MenuItem>
           ))}
         </Select>
       </FormControl>

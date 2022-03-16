@@ -163,7 +163,7 @@ export default function App() {
   const [busy, setBusy] = useState(false)
 
   return (
-    <ThemeProvider>
+    <ThemeProvider >
       <div className={classes.demo}>
         {mode === 'build' && (
           <Box className={classes.viewer} width={'100%'}>
@@ -241,6 +241,6 @@ export default function App() {
           }}
         />
       </div>
-    </ThemeProvider>
+    </ThemeProvider> 
   )
 }

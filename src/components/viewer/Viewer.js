@@ -80,7 +80,7 @@ export default function Viewer(props) {
             form.items
               .filter((item) => !item.hidden)
               .map((item, index) => (
-                <Box marginBottom={5}>
+                <Box marginBottom={5} key={item.id}>
                   <InputToRender
                     index={index}
                     question={item.question || ''}
@@ -117,6 +117,7 @@ export default function Viewer(props) {
             <Popover
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
+              onClose={()=>setAnchorEl(null)}
               anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'left'
